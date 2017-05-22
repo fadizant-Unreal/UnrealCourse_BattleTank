@@ -11,18 +11,28 @@ ATank* ATankAIController::GetControlledTank() const
 	return Cast<ATank>(GetPawn());
 }
 
+ATank* ATankAIController::GetPlayerTank() const
+{
+	APlayerController* tank = GetWorld()->GetFirstPlayerController();
+	if (tank)
+	{
+		return Cast<ATank>(tank->GetPawn());
+	}
+	return nullptr;
+}
+
 void ATankAIController::BeginPlay()
 {
 	Super::BeginPlay();
 
-	auto controllerTank = GetControlledTank();
+	auto controllerTank = GetPlayerTank();
 	if (!controllerTank)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("AIController not connect"));
+		UE_LOG(LogTemp, Warning, TEXT("can't find Playercontroller"));
 	}
 	else
 	{
-		UE_LOG(LogTemp, Warning, TEXT("AIController connected : %s"), *(controllerTank->GetName()));
+		UE_LOG(LogTemp, Warning, TEXT("Playercontroller found : %s"), *(controllerTank->GetName()));
 	}
 
 }
