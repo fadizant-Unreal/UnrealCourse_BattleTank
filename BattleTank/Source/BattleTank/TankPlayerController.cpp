@@ -25,3 +25,34 @@ void ATankPlayerController::BeginPlay()
 	}
 	
 }
+
+// Called every frame
+void ATankPlayerController::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+	AimToCrosshair();
+	//UE_LOG(LogTemp, Warning, TEXT("Playercontroller Tick"));
+}
+
+void ATankPlayerController::AimToCrosshair()
+{
+	if (!GetControlledTank())
+	{
+		return;
+	}
+
+	FVector HitLocation;
+	if (GetSightRayHitLocation(OUT HitLocation))
+	{
+	}
+
+	UE_LOG(LogTemp, Warning, TEXT("%s"), *HitLocation.ToString());
+
+	
+}
+
+bool ATankPlayerController::GetSightRayHitLocation(FVector & hitLocation) const
+{
+	hitLocation = FVector(1.0);
+	return false;
+}
