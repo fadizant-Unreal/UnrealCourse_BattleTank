@@ -46,7 +46,7 @@ void ATankPlayerController::AimToCrosshair()
 	{
 	}
 
-	UE_LOG(LogTemp, Warning, TEXT("Look direction :%s"), *HitLocation.ToString());
+	//UE_LOG(LogTemp, Warning, TEXT("Look direction :%s"), *HitLocation.ToString());
 
 	
 }
@@ -57,6 +57,18 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector & hitLocation) const
 	GetViewportSize(OUT viewPortSizeX, OUT viewPortSizeY);
 
 	FVector2D Screenlocation = FVector2D(viewPortSizeX*crossHairXLocation, viewPortSizeY*crossHairYLocation);
-	hitLocation = FVector(Screenlocation, .0f);
+
+	FVector lookDirection;
+	if (GetLookDirection(Screenlocation, OUT lookDirection))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Look direction :%s"), *lookDirection.ToString());
+	}
+	//hitLocation = FVector(Screenlocation, .0f);
 	return false;
+}
+
+bool ATankPlayerController::GetLookDirection(FVector2D Screenlocation , FVector &lookDirection) const
+{
+	FVector cameraWorldLocation;
+	return DeprojectScreenPositionToWorld(Screenlocation.X, Screenlocation.Y, OUT cameraWorldLocation, OUT lookDirection);
 }
