@@ -23,9 +23,11 @@ public:
 	float crossHairXLocation = 0.5f;
 	UPROPERTY(EditAnywhere)
 	float crossHairYLocation = 0.33333f;
-
+	UPROPERTY(EditAnywhere)
+	float lineTraceRange = 1000000.0f;
 private:
 	void AimToCrosshair();
 	bool GetSightRayHitLocation(FVector & hitLocation) const;
 	bool GetLookDirection(FVector2D Screenlocation, FVector &lookDirection) const;
+	bool GetLookVectorHitLocation(FVector lookDirection, FVector & hitLocation) const;
 };
