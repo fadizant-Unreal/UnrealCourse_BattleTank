@@ -6,8 +6,8 @@
 
 
 
-void UTankBarrel::Elevate(float DegreesPerSec)
+void UTankBarrel::Elevate(float ReletaveSpeed)
 {
 
-	UE_LOG(LogTemp, Warning, TEXT("Barrel Elevate at :%f"), DegreesPerSec);
+	
 }

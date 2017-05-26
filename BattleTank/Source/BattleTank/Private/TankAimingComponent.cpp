@@ -53,6 +53,9 @@ void UTankAimingComponent::aimAt(FVector hitLocation, float launchSpeed)
 		startLocation,
 		hitLocation,
 		launchSpeed,
+		false,
+		0,
+		0,
 		ESuggestProjVelocityTraceOption::DoNotTrace
 	);
 	
@@ -63,6 +66,14 @@ void UTankAimingComponent::aimAt(FVector hitLocation, float launchSpeed)
 		UE_LOG(LogTemp, Warning, TEXT("%s aimming at :%s"), *tankName, *aimDirection.ToString());
 
 		MoveBarrel(aimDirection);
+
+		auto time = GetWorld()->GetTimeSeconds();
+		UE_LOG(LogTemp, Warning, TEXT("%f: Aim found"), time);
+	}
+	else
+	{
+		auto time = GetWorld()->GetTimeSeconds();
+		UE_LOG(LogTemp, Warning, TEXT("%f: No Aim found"), time);
 	}
 		
 	
