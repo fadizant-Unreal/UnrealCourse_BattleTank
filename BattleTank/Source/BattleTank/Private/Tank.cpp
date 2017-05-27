@@ -45,3 +45,13 @@ void ATank::setBarrelReferance(UStaticMeshComponent* barrelToSet)
 	tankAimingComponent->setBarrelReferance((UTankBarrel*)barrelToSet);
 }
 
+void ATank::setTurretReferance(UStaticMeshComponent* turretToSet)
+{
+	tankAimingComponent->setTurretReferance((UTankTurret*)turretToSet);
+}
+
+void ATank::Fire()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Fire"));
+}
+
