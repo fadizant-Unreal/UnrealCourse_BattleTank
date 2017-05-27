@@ -90,7 +90,7 @@ void UTankAimingComponent::MoveBarrel(FVector aimDirection)
 	auto deltaRotation = aimAsRotator - barrelRotation;
 	UE_LOG(LogTemp, Warning, TEXT("aim is rotator :%s"),*deltaRotation.ToString());
 
-	barrel->Elevate(5.0f);
+	barrel->Elevate(deltaRotation.Pitch);
 }
 
 
