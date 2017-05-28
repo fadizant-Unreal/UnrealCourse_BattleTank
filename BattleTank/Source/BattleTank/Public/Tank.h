@@ -21,14 +21,18 @@ public:
 	UFUNCTION(BlueprintCallable,Category = Setup)
 	void setBarrelReferance(UStaticMeshComponent* barrelToSet);
 
-	UPROPERTY(EditAnywhere, Category = Firing)
+	UPROPERTY(EditDefaultsOnly, Category = Firing)
 	float launchSpeed = 8000;
 
-	UPROPERTY(EditAnywhere, Category = Setup)
+	UPROPERTY(EditDefaultsOnly, Category = Firing)
+	float reloadTimeInSec = 3.0f;
+
+	UPROPERTY(EditDefaultsOnly, Category = Setup)
 	TSubclassOf<AProjectile> projectileBlueprint;
 
 	UFUNCTION(BlueprintCallable, Category = Setup)
 	void setTurretReferance(UStaticMeshComponent* turretToSet);
+
 
 	UFUNCTION(BlueprintCallable, Category = fire)
 	void Fire();
@@ -50,4 +54,8 @@ private:
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 
 	UTankBarrel* barrel = nullptr;
+
+	
+
+	double lastFireTime = 0;
 };

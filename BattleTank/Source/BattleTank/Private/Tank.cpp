@@ -55,20 +55,23 @@ void ATank::setTurretReferance(UStaticMeshComponent* turretToSet)
 
 void ATank::Fire()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Fire"));
-	if (!barrel)
+	//UE_LOG(LogTemp, Warning, TEXT("Fire"));
+
+	bool isReload = (FPlatformTime::Seconds() - lastFireTime) > reloadTimeInSec;
+
+	if (barrel && isReload)
 	{
-		return;
+		FVector projectileLocation = barrel->GetSocketLocation(FName("Projectile"));
+		FRotator projectileRotation = barrel->GetSocketRotation(FName("Projectile"));
+
+		UE_LOG(LogTemp, Warning, TEXT("Hit location :%s"), *projectileLocation.ToString());
+
+		auto projectile = GetWorld()->SpawnActor<AProjectile>(projectileBlueprint, projectileLocation, projectileRotation);
+
+		projectile->LaunchProjectile(launchSpeed);
+		lastFireTime = FPlatformTime::Seconds();
 	}
 
-	FVector projectileLocation = barrel->GetSocketLocation(FName("Projectile"));
-	FRotator projectileRotation = barrel->GetSocketRotation(FName("Projectile"));
-
-	UE_LOG(LogTemp, Warning, TEXT("Hit location :%s"), *projectileLocation.ToString());
 	
-
-	auto projectile =  GetWorld()->SpawnActor<AProjectile>(projectileBlueprint, projectileLocation, projectileRotation);
-
-	projectile->LaunchProjectile(launchSpeed);
 }
 

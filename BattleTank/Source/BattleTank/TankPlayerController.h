@@ -19,11 +19,11 @@ public:
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditDefaultsOnly)
 	float crossHairXLocation = 0.5f;
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditDefaultsOnly)
 	float crossHairYLocation = 0.33333f;
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditDefaultsOnly)
 	float lineTraceRange = 1000000.0f;
 private:
 	void AimToCrosshair();
