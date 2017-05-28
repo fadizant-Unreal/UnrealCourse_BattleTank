@@ -67,6 +67,8 @@ void ATank::Fire()
 	UE_LOG(LogTemp, Warning, TEXT("Hit location :%s"), *projectileLocation.ToString());
 	
 
-	GetWorld()->SpawnActor<AProjectile>(projectileBlueprint, projectileLocation, projectileRotation);
+	auto projectile =  GetWorld()->SpawnActor<AProjectile>(projectileBlueprint, projectileLocation, projectileRotation);
+
+	projectile->LaunchProjectile(launchSpeed);
 }
 
