@@ -3,6 +3,7 @@
 #include "BattleTank.h"
 #include "TankBarrel.h"
 #include "Projectile.h"
+#include "TankTrack.h"
 #include "Tank.h"
 
 
@@ -51,6 +52,11 @@ void ATank::setBarrelReferance(UStaticMeshComponent* barrelToSet)
 void ATank::setTurretReferance(UStaticMeshComponent* turretToSet)
 {
 	tankAimingComponent->setTurretReferance((UTankTurret*)turretToSet);
+}
+
+void ATank::setTrackReferance(UStaticMeshComponent* trackToSet)
+{
+	tankAimingComponent->setTrackReferance((UTankTrack*)trackToSet);
 }
 
 void ATank::Fire()

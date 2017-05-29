@@ -3,6 +3,7 @@
 #include "BattleTank.h"
 #include "TankBarrel.h"
 #include "TankTurret.h"
+#include "TankTrack.h"
 #include "TankAimingComponent.h"
 
 
@@ -105,5 +106,10 @@ void UTankAimingComponent::setBarrelReferance(UTankBarrel* barrelToSet)
 void UTankAimingComponent::setTurretReferance(UTankTurret* turretToSet)
 {
 	turret = turretToSet;
+}
+
+void UTankAimingComponent::setTrackReferance(UTankTrack* trackToSet)
+{
+	track = trackToSet;
 }
 

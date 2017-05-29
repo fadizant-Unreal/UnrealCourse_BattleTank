@@ -9,6 +9,7 @@
 class UTankBarrel;
 class UTankTurret;
 class AProjectile;
+class UTankTrack;
 
 UCLASS()
 class BATTLETANK_API ATank : public APawn
@@ -21,6 +22,15 @@ public:
 	UFUNCTION(BlueprintCallable,Category = Setup)
 	void setBarrelReferance(UStaticMeshComponent* barrelToSet);
 
+	UFUNCTION(BlueprintCallable, Category = Setup)
+	void setTurretReferance(UStaticMeshComponent* turretToSet);
+
+	UFUNCTION(BlueprintCallable, Category = Setup)
+	void setTrackReferance(UStaticMeshComponent* trackToSet);
+
+	UFUNCTION(BlueprintCallable, Category = fire)
+	void Fire();
+
 	UPROPERTY(EditDefaultsOnly, Category = Firing)
 	float launchSpeed = 8000;
 
@@ -30,12 +40,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = Setup)
 	TSubclassOf<AProjectile> projectileBlueprint;
 
-	UFUNCTION(BlueprintCallable, Category = Setup)
-	void setTurretReferance(UStaticMeshComponent* turretToSet);
 
-
-	UFUNCTION(BlueprintCallable, Category = fire)
-	void Fire();
 
 protected:
 	UTankAimingComponent* tankAimingComponent = nullptr;
